@@ -163,12 +163,19 @@
 
         <!-- Optimal Pricing Chart Section -->
         <div class="visualization-section">
-            <h2>📈 Ryan Air's Optimal Price by Quality Level (When BA Responds)</h2>
+            <h2>📈 Ryan Air's Optimal Strategy by Quality Level (When BA Responds)</h2>
             <p style="text-align: center; color: #666; font-style: italic; margin-bottom: 20px;">
-                This chart shows the profit-maximizing price for Ryan Air at each quality level, assuming BA responds optimally.
+                These charts show the profit-maximizing price and resulting profit for Ryan Air at each quality level, assuming BA responds optimally.
             </p>
-            <div style="max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px;">
-                <canvas id="optimalPriceChart"></canvas>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1400px; margin: 0 auto;">
+                <div style="background: white; padding: 20px; border-radius: 10px;">
+                    <h3 style="text-align: center; color: #2a5298; margin-bottom: 15px;">Optimal Price</h3>
+                    <canvas id="optimalPriceChart"></canvas>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 10px;">
+                    <h3 style="text-align: center; color: #2a5298; margin-bottom: 15px;">Resulting Profit</h3>
+                    <canvas id="optimalProfitChart"></canvas>
+                </div>
             </div>
         </div>
 
