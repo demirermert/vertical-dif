@@ -924,6 +924,47 @@ input[readonly] {
     }
 }
 
+/* iPad Pro 13" optimization (1024px - 1400px) */
+@media (min-width: 1025px) and (max-width: 1400px) {
+    .main-layout {
+        grid-template-columns: 270px 1fr;
+    }
+    
+    .left-column {
+        width: 270px;
+    }
+    
+    .content {
+        grid-template-columns: 250px 270px 250px;
+        gap: 12px;
+        padding: 15px 20px;
+    }
+    
+    .panel {
+        padding: 15px;
+    }
+    
+    .panel h2 {
+        font-size: 1.1em;
+    }
+    
+    .form-section-sidebar {
+        padding: 15px 10px;
+    }
+    
+    .form-section-sidebar h2 {
+        font-size: 1.1em;
+    }
+    
+    .mode-section {
+        padding: 8px 15px;
+    }
+    
+    .mode-button {
+        padding: 6px 10px;
+    }
+}
+
 @media (max-width: 1024px) {
     .content {
         grid-template-columns: 1fr;
