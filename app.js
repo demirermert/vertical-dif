@@ -142,7 +142,7 @@ function calculate() {
         document.getElementById('baPrice').style.backgroundColor = '#fff9e6';
         const hint = document.getElementById('baPrice').nextElementSibling;
         if (hint) {
-            hint.textContent = 'BA responds optimally (price adjusted)';
+            hint.textContent = '(price will adjust as RA change its price)';
             hint.style.color = '#d97706';
         }
     } else {
