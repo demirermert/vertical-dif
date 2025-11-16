@@ -1,5 +1,6 @@
 // Global variables
 let chart = null;
+let optimalPriceChart = null;
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
@@ -40,6 +41,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Calculate with default values on load
     calculate();
+    
+    // Generate optimal pricing chart
+    generateOptimalPricingChart();
 });
 
 // Format number to show decimal only if needed
@@ -207,4 +211,133 @@ function reset() {
     document.getElementById('raQualitySlider').value = '4';
     document.getElementById('baNoResponse').checked = true;
     calculate();
+}
+
+// Find optimal Ryan Air price for a given quality level when BA responds
+function findOptimalRAPrice(raQuality) {
+    const baQuality = 6;
+    let maxProfit = -Infinity;
+    let optimalPrice = 0;
+    
+    // Search for optimal price from $10 to $3000 in steps of $10
+    for (let raPrice = 10; raPrice <= 3000; raPrice += 10) {
+        // Calculate BA's response
+        const baPrice = calculateBAOptimalPrice(raPrice, raQuality, baQuality);
+        
+        // Calculate market shares
+        const results = calculateMarketShares(raPrice, raQuality, baPrice, baQuality);
+        
+        // Calculate Ryan Air profit
+        const raProfit = results.raShare * raPrice * 100;
+        
+        // Track maximum
+        if (raProfit > maxProfit) {
+            maxProfit = raProfit;
+            optimalPrice = raPrice;
+        }
+    }
+    
+    return { price: optimalPrice, profit: maxProfit };
+}
+
+// Generate the optimal pricing chart
+function generateOptimalPricingChart() {
+    const qualityLevels = [];
+    const optimalPrices = [];
+    
+    // Calculate optimal prices for quality levels from 0.5 to 5.9
+    for (let quality = 0.5; quality <= 5.9; quality += 0.1) {
+        qualityLevels.push(quality.toFixed(1));
+        const result = findOptimalRAPrice(quality);
+        optimalPrices.push(result.price);
+    }
+    
+    const ctx = document.getElementById('optimalPriceChart').getContext('2d');
+    
+    if (optimalPriceChart) {
+        optimalPriceChart.destroy();
+    }
+    
+    optimalPriceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: qualityLevels,
+            datasets: [{
+                label: 'Optimal Ryan Air Price ($)',
+                data: optimalPrices,
+                borderColor: '#f59e0b',
+                backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 0,
+                pointHoverRadius: 6,
+                pointHoverBackgroundColor: '#f59e0b',
+                pointHoverBorderColor: '#fff',
+                pointHoverBorderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 2,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        color: '#2a5298'
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return 'Optimal Price: $' + context.parsed.y;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Ryan Air Quality (inches of legroom)',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        color: '#2a5298'
+                    },
+                    ticks: {
+                        maxTicksLimit: 15
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Optimal Price ($)',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        color: '#2a5298'
+                    },
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return '$' + value;
+                        }
+                    }
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index'
+            }
+        }
+    });
 }
