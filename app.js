@@ -284,7 +284,7 @@ function generateOptimalPricingChart() {
         options: {
             responsive: true,
             maintainAspectRatio: true,
-            aspectRatio: 1.5,
+            aspectRatio: 2.2,
             plugins: {
                 legend: {
                     display: true,
@@ -374,7 +374,7 @@ function generateOptimalPricingChart() {
         options: {
             responsive: true,
             maintainAspectRatio: true,
-            aspectRatio: 1.5,
+            aspectRatio: 2.2,
             plugins: {
                 legend: {
                     display: true,
