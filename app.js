@@ -28,6 +28,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('baNoResponse').addEventListener('change', calculate);
     document.getElementById('baResponds').addEventListener('change', calculate);
     
+    // Make entire mode button clickable
+    document.getElementById('modeButton1').addEventListener('click', function() {
+        document.getElementById('baNoResponse').checked = true;
+        calculate();
+    });
+    document.getElementById('modeButton2').addEventListener('click', function() {
+        document.getElementById('baResponds').checked = true;
+        calculate();
+    });
+    
     // Calculate with default values on load
     calculate();
 });
