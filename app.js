@@ -199,10 +199,10 @@ function updateMarketBars(raShare, baShare, notFlying) {
     document.getElementById('raStackSegment').style.height = raPercent + '%';
     document.getElementById('nfStackSegment').style.height = nfPercent + '%';
     
-    // Update values (show as decimals like 0.60)
-    document.getElementById('baStackValue').textContent = formatNumber(baShare, 2);
-    document.getElementById('raStackValue').textContent = formatNumber(raShare, 2);
-    document.getElementById('nfStackValue').textContent = formatNumber(notFlying, 2);
+    // Update values (show as percentages like 60%)
+    document.getElementById('baStackValue').textContent = formatNumber(baPercent, 0) + '%';
+    document.getElementById('raStackValue').textContent = formatNumber(raPercent, 0) + '%';
+    document.getElementById('nfStackValue').textContent = formatNumber(nfPercent, 0) + '%';
 }
 
 // Reset to default values
