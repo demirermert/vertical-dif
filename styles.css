@@ -14,10 +14,9 @@ body {
 }
 
 .container {
-    max-width: 1800px;
+    max-width: 100%;
     margin: 0 auto;
     background: white;
-    border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
@@ -35,9 +34,40 @@ header h1 {
     font-weight: 700;
 }
 
-.subtitle {
-    font-size: 1.2em;
-    opacity: 0.95;
+/* Main Two-Column Layout */
+.main-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    min-height: calc(100vh - 80px);
+}
+
+.left-column {
+    background: #f8f9fa;
+    border-right: 2px solid #e0e0e0;
+    overflow-y: auto;
+    height: calc(100vh - 80px);
+    position: sticky;
+    top: 0;
+}
+
+.right-column {
+    background: white;
+    overflow-y: auto;
+}
+
+.form-section-sidebar {
+    padding: 20px 15px;
+}
+
+.form-section-sidebar h2 {
+    color: #2a5298;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.form-section-sidebar iframe {
+    border: none;
 }
 
 /* Mode Section - Top Row */
@@ -140,11 +170,10 @@ header h1 {
 
 .content {
     display: grid;
-    grid-template-columns: 380px 500px 380px;
-    gap: 20px;
-    padding: 25px 40px;
-    max-width: 1350px;
-    margin: 0 auto;
+    grid-template-columns: 300px 320px 300px;
+    gap: 15px;
+    padding: 20px 25px;
+    justify-content: center;
 }
 
 .panel {
