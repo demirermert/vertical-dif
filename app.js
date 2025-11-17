@@ -241,115 +241,28 @@ function findOptimalRAPrice(raQuality) {
 // Generate the optimal pricing chart
 function generateOptimalPricingChart() {
     const qualityLevels = [];
-    const optimalPrices = [];
     const optimalProfits = [];
     
     // Calculate optimal prices for quality levels from 0.5 to 5.9
     for (let quality = 0.5; quality <= 5.9; quality += 0.1) {
         qualityLevels.push(quality.toFixed(1));
         const result = findOptimalRAPrice(quality);
-        optimalPrices.push(result.price);
         optimalProfits.push(result.profit);
     }
     
-    // Create Price Chart
-    const ctxPrice = document.getElementById('optimalPriceChart').getContext('2d');
-    
-    if (optimalPriceChart) {
-        optimalPriceChart.destroy();
-    }
-    
-    optimalPriceChart = new Chart(ctxPrice, {
-        type: 'line',
-        data: {
-            labels: qualityLevels,
-            datasets: [{
-                label: 'Optimal Ryan Air Price ($)',
-                data: optimalPrices,
-                borderColor: '#f59e0b',
-                backgroundColor: 'rgba(245, 158, 11, 0.1)',
-                borderWidth: 3,
-                fill: true,
-                tension: 0.4,
-                pointRadius: 0,
-                pointHoverRadius: 6,
-                pointHoverBackgroundColor: '#f59e0b',
-                pointHoverBorderColor: '#fff',
-                pointHoverBorderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            aspectRatio: 1.8,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top',
-                    labels: {
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        },
-                        color: '#2a5298'
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return 'Optimal Price: $' + context.parsed.y;
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Ryan Air Quality (inches)',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        },
-                        color: '#2a5298'
-                    },
-                    ticks: {
-                        maxTicksLimit: 12
-                    }
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Optimal Price ($)',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        },
-                        color: '#2a5298'
-                    },
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) {
-                            return '$' + value;
-                        }
-                    }
-                }
-            },
-            interaction: {
-                intersect: false,
-                mode: 'index'
-            }
-        }
-    });
-    
     // Create Profit Chart
-    const ctxProfit = document.getElementById('optimalProfitChart').getContext('2d');
+    const ctxProfit = document.getElementById('optimalProfitChart');
+    
+    if (!ctxProfit) {
+        console.error('optimalProfitChart canvas not found');
+        return;
+    }
     
     if (optimalProfitChart) {
         optimalProfitChart.destroy();
     }
     
-    optimalProfitChart = new Chart(ctxProfit, {
+    optimalProfitChart = new Chart(ctxProfit.getContext('2d'), {
         type: 'line',
         data: {
             labels: qualityLevels,
