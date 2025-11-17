@@ -64,9 +64,39 @@ function formatPercent(num) {
 
 // Calculate market shares using the exact Excel formulas
 function calculateMarketShares(raPrice, raQuality, baPrice, baQuality) {
-    // A4 = raPrice, B4 = raQuality
-    // A12 = baPrice, B12 = baQuality
+    // Special case: when qualities are equal (Bertrand competition)
+    if (Math.abs(raQuality - baQuality) < 0.01) {
+        if (raPrice < baPrice) {
+            // Ryan Air gets entire market
+            return {
+                raShare: 1,
+                baShare: 0,
+                notFlying: 0,
+                thetaL: 0,
+                thetaH: 0
+            };
+        } else if (raPrice > baPrice) {
+            // BA gets entire market
+            return {
+                raShare: 0,
+                baShare: 1,
+                notFlying: 0,
+                thetaL: 0,
+                thetaH: 0
+            };
+        } else {
+            // Equal prices, split the market
+            return {
+                raShare: 0.5,
+                baShare: 0.5,
+                notFlying: 0,
+                thetaL: 0,
+                thetaH: 0
+            };
+        }
+    }
     
+    // Normal case: different qualities
     const A4 = raPrice;
     const B4 = raQuality;
     const A12 = baPrice;
@@ -107,6 +137,13 @@ function calculateMarketShares(raPrice, raQuality, baPrice, baQuality) {
 
 // Calculate BA's optimal response price given RA's price and quality
 function calculateBAOptimalPrice(raPrice, raQuality, baQuality) {
+    // Special case: when qualities are equal (Bertrand competition)
+    // BA's best response is to price $1 less than Ryan Air
+    if (Math.abs(raQuality - baQuality) < 0.01) {
+        return Math.max(10, raPrice - 1); // Price at least $10
+    }
+    
+    // Normal case: different qualities
     // BA optimal price formula from Excel:
     // =1000*MAX(A4/1000, 0.5*(B12-B4+A4/1000))
     // Where A4=raPrice, B4=raQuality, B12=baQuality
@@ -243,8 +280,8 @@ function generateOptimalPricingChart() {
     const qualityLevels = [];
     const optimalProfits = [];
     
-    // Calculate optimal prices for quality levels from 0.5 to 5.9
-    for (let quality = 0.5; quality <= 5.9; quality += 0.1) {
+    // Calculate optimal prices for quality levels from 0.5 to 6.0
+    for (let quality = 0.5; quality <= 6.0; quality += 0.1) {
         qualityLevels.push(quality.toFixed(1));
         const result = findOptimalRAPrice(quality);
         optimalProfits.push(result.profit);
