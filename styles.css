@@ -434,12 +434,12 @@ input[readonly] {
 }
 
 .btn-chart-toggle {
-    padding: 15px 30px;
+    padding: 9px 18px;
     background: linear-gradient(135deg, #2a5298 0%, #7e22ce 100%);
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 1.1em;
+    font-size: 0.95em;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
