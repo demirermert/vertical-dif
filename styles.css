@@ -433,6 +433,28 @@ input[readonly] {
     transform: translateY(-2px);
 }
 
+.btn-chart-toggle {
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #2a5298 0%, #7e22ce 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-chart-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(42, 82, 152, 0.4);
+}
+
+.btn-chart-toggle.active {
+    background: linear-gradient(135deg, #1e3c72 0%, #6b1aa8 100%);
+}
+
 /* Market Visualization Section */
 .visualization-section {
     padding: 40px;

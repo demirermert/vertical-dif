@@ -171,19 +171,6 @@
             </div>
         </div>
 
-        <!-- Optimal Pricing Chart Section -->
-        <div class="visualization-section" style="max-width: 100%; padding: 40px 60px;">
-            <h2>📈 Ryan Air's Optimal Strategy by Quality Level (When BA Responds)</h2>
-            <p style="text-align: center; color: #666; font-style: italic; margin-bottom: 20px;">
-                This chart shows the resulting profit for Ryan Air at each quality level, assuming BA responds optimally.
-            </p>
-            <div style="max-width: 900px; margin: 0 auto;">
-                <div style="background: white; padding: 20px; border-radius: 10px;">
-                    <canvas id="optimalProfitChart"></canvas>
-                </div>
-            </div>
-        </div>
-
         <!-- Explanation Section -->
         <div class="explanation">
             <h2>📚 Scenario</h2>
@@ -196,6 +183,25 @@
                 <li><strong>Toggle BA Response:</strong> Switch between scenarios where BA cannot respond vs. responds optimally</li>
                 <li><strong>Observe Results:</strong> Watch how market shares and profits change in real-time</li>
             </ul>
+        </div>
+
+        <!-- Optimal Pricing Chart Section -->
+        <div class="visualization-section" style="max-width: 100%; padding: 30px 60px; background: #f8f9fa; border-top: 2px solid #e0e0e0;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <button id="toggleChartBtn" class="btn-chart-toggle">
+                    📈 Show Ryan Air's Optimal Strategy by Quality Level (When BA Responds)
+                </button>
+            </div>
+            <div id="chartContainer" style="display: none;">
+                <p style="text-align: center; color: #666; font-style: italic; margin-bottom: 20px;">
+                    This chart shows the resulting profit for Ryan Air at each quality level, assuming BA responds optimally.
+                </p>
+                <div style="max-width: 900px; margin: 0 auto;">
+                    <div style="background: white; padding: 20px; border-radius: 10px;">
+                        <canvas id="optimalProfitChart"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
             </div>
         </div>

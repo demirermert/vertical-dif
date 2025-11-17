@@ -37,6 +37,22 @@ document.addEventListener('DOMContentLoaded', function() {
         calculate();
     });
     
+    // Toggle chart visibility
+    document.getElementById('toggleChartBtn').addEventListener('click', function() {
+        const chartContainer = document.getElementById('chartContainer');
+        const btn = document.getElementById('toggleChartBtn');
+        
+        if (chartContainer.style.display === 'none') {
+            chartContainer.style.display = 'block';
+            btn.textContent = '📈 Hide Ryan Air\'s Optimal Strategy by Quality Level (When BA Responds)';
+            btn.classList.add('active');
+        } else {
+            chartContainer.style.display = 'none';
+            btn.textContent = '📈 Show Ryan Air\'s Optimal Strategy by Quality Level (When BA Responds)';
+            btn.classList.remove('active');
+        }
+    });
+    
     // Calculate with default values on load
     calculate();
     
