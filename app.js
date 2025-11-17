@@ -5,9 +5,6 @@ let optimalProfitChart = null;
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
-    // Set up event listeners
-    document.getElementById('resetBtn').addEventListener('click', reset);
-    
     // Auto-update on input changes
     document.getElementById('raPrice').addEventListener('input', function() {
         document.getElementById('raPriceSlider').value = this.value;
