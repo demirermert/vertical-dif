@@ -140,7 +140,7 @@ function calculateBAOptimalPrice(raPrice, raQuality, baQuality) {
     // Special case: when qualities are equal (Bertrand competition)
     // BA's best response is to price $1 less than Ryan Air
     if (Math.abs(raQuality - baQuality) < 0.01) {
-        return Math.max(10, raPrice - 1); // Price at least $10
+        return raPrice - 1; // Undercut by $1
     }
     
     // Normal case: different qualities
