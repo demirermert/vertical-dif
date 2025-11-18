@@ -947,43 +947,64 @@ input[readonly] {
 }
 
 /* iPad Pro 13" optimization (1024px - 1400px) */
-@media (min-width: 1025px) and (max-width: 1400px) {
+@media (min-width: 1024px) and (max-width: 1400px) {
     .main-layout {
-        grid-template-columns: 270px 1fr;
+        grid-template-columns: 260px 1fr;
     }
     
     .left-column {
-        width: 270px;
+        width: 260px;
     }
     
     .content {
-        grid-template-columns: 250px 270px 250px;
-        gap: 12px;
-        padding: 15px 20px;
+        grid-template-columns: 240px 260px 240px;
+        gap: 10px;
+        padding: 15px 15px;
+        justify-content: center;
     }
     
     .panel {
-        padding: 15px;
+        padding: 12px;
     }
     
     .panel h2 {
-        font-size: 1.1em;
+        font-size: 1em;
+        margin-bottom: 12px;
     }
     
     .form-section-sidebar {
-        padding: 15px 10px;
+        padding: 15px 8px;
     }
     
     .form-section-sidebar h2 {
-        font-size: 1.1em;
+        font-size: 1em;
     }
     
     .mode-section {
-        padding: 8px 15px;
+        padding: 8px 12px;
     }
     
     .mode-button {
-        padding: 6px 10px;
+        padding: 6px 8px;
+        min-height: 40px;
+    }
+    
+    .mode-button label strong {
+        font-size: 0.8em;
+    }
+    
+    .mode-desc {
+        font-size: 0.7em;
+    }
+    
+    input[type="text"],
+    input[type="number"] {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+    
+    .section {
+        margin-bottom: 12px;
     }
 }
 
